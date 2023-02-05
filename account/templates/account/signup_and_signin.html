@@ -19,7 +19,9 @@
             <form method="POST" id="form-registration" class="form-registration">
                 {% csrf_token %}
                 {% if ERROR %}
-                    {{ ERROR }}
+                    <span style="color: rgba(201,17,51,0.96)">
+                        {{ ERROR }}
+                    </span>
                 {% endif %}
                 <input class="input-field" name="input-email" type="email" placeholder="Email" required>
                 <input class="input-field" name="input-password-1" type="password" placeholder="Password" required>
