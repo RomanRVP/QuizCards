@@ -1,5 +1,9 @@
 from django import views
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+
+from .models import User
 
 
 class RegistrationAndLogin(views.View):
@@ -8,3 +12,40 @@ class RegistrationAndLogin(views.View):
     """
     def get(self, request, *args, **kwargs):
         return render(request, 'account/signup_and_signin.html')
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+
+        # Sign up -> sign in.
+        if 'post-registration-btn' in data:
+            user_email = data.get('input-email')
+            user_password_1 = data.get('input-password-1')
+            user_password_2 = data.get('input-password-2')
+
+            if User.objects.filter(email=user_email):
+                return render(request, 'account/signup_and_signin.html',
+                              {'ERROR': 'This email already taken!'})
+            if user_password_1 != user_password_2:
+                return render(request, 'account/signup_and_signin.html',
+                              {'ERROR': 'Passwords do not match!'})
+
+            User.objects.create_user(user_email, user_password_1)
+            user = authenticate(email=user_email, password=user_password_1)
+            login(request, user)
+            return HttpResponse('<h2>Registration complete!</h2>')
+
+        # Sign in.
+        elif 'post-login-btn' in data:
+            user_email = data.get('input-email')
+            user_password = data.get('input-password')
+            user = authenticate(email=user_email, password=user_password)
+            if user:
+                login(request, user)
+                return HttpResponse('<h2>Successful login!</h2>')
+
+            elif User.objects.filter(email=user_email):
+                return render(request, 'account/signup_and_signin.html',
+                              {'ERROR': 'Password is not correct!'})
+
+            return render(request, 'account/signup_and_signin.html',
+                          {'ERROR': 'User not found!'})
