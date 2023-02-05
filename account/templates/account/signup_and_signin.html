@@ -1,10 +1,44 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'account/css/signup_and_signin.css' %}">
+    <title>Wellcome</title>
 </head>
 <body>
+<div class="body-wrapper">
+    <div class="main-window">
 
+        <div class="top-buttons">
+            <button type="button" id="sign-up" class="top-button">Sign Up</button>
+            <button type="button" id="sign-in" class="top-button">Sign In</button>
+        </div>
+
+        <div class="forms-box">
+            <form method="POST" id="form-registration" class="form-registration">
+                {% csrf_token %}
+                {% if ERROR %}
+                    {{ ERROR }}
+                {% endif %}
+                <input class="input-field" name="input-email" type="email" placeholder="Email" required>
+                <input class="input-field" name="input-password-1" type="password" placeholder="Password" required>
+                <input class="input-field" name="input-password-2" type="password" placeholder="Confirm password" required>
+                <br>
+                <button type="submit" class="post-registration-btn" name="post-registration-btn">complete registration & log in</button>
+            </form>
+
+            <form method="POST" id="form-login" class="form-login">
+                {% csrf_token %}
+                <input class="input-field" name="input-email" type="email" placeholder="Email" required>
+                <input class="input-field" name="input-password" type="password" placeholder="Password" required>
+                <br>
+                <button type="submit" class="post-login-btn" name="post-login-btn">log in</button>
+            </form>
+        </div>
+
+    </div>
+</div>
 </body>
+<script src="{% static 'account/js/signup_and_signin.js' %}"></script>
 </html>
