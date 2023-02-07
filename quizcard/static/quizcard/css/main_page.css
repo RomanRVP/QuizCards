@@ -24,6 +24,11 @@
     margin-top: 5px;
 }
 
+.user-logout {
+    width: 100px;
+    height: 100%;
+}
+
 .main-content {
     flex: 1 1 auto;
     background-color: #1f2833;
