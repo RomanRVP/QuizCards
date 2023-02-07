@@ -2,6 +2,7 @@ from django import views
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LogoutView
 
 from .models import User
 
@@ -49,3 +50,7 @@ class RegistrationAndLogin(views.View):
 
             return render(request, 'account/signup_and_signin.html',
                           {'ERROR': 'User not found!'})
+
+
+class UserLogOut(LogoutView):
+    next_page = 'reg_and_log'
