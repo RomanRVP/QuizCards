@@ -22,6 +22,8 @@
     background-color: #1f2833;
     border-radius: 5px;
     margin-top: 5px;
+    display: flex;
+    align-items: center;
 }
 
 .user-logout {
@@ -35,6 +37,12 @@
     border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.deck-list {}
+
+.create-deck {
+    display: none;
 }
 
 .footer {

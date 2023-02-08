@@ -16,9 +16,25 @@
                 <p>username example</p>
                 <a href="account/user_logout">log out</a>
             </div>
+            <div>
+                <button class="add-new-deck-btn" id="add-new-deck-btn">+ new deck</button>
+            </div>
         </header>
 
-        <main class="main-content"></main>
+        <main class="main-content">
+            <div class="deck-list" id="deck-list">
+
+            </div>
+
+            <div class="create-deck" id="create-deck">
+                <form class="create-deck-form">
+                    {% csrf_token %}
+                    <input type="text" placeholder="deck name" name="deck_name" required>
+                    <input type="text" placeholder="deck description" name="deck_description">
+                    <button type="submit" id="add-deck-confirm">Confirm</button>
+                </form>
+            </div>
+        </main>
 
         <footer class="footer">
 
@@ -28,4 +44,5 @@
 
 </div>
 </body>
+<script src="{% static 'quizcard/js/main_page.js' %}"></script>
 </html>
