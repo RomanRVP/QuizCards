@@ -1,6 +1,5 @@
 from django import views
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.views import LogoutView
 
@@ -33,7 +32,7 @@ class RegistrationAndLogin(views.View):
             User.objects.create_user(user_email, user_password_1)
             user = authenticate(email=user_email, password=user_password_1)
             login(request, user)
-            return HttpResponse('<h2>Registration complete!</h2>')
+            return redirect('main_page')
 
         # Sign in.
         elif 'post-login-btn' in data:
@@ -42,7 +41,7 @@ class RegistrationAndLogin(views.View):
             user = authenticate(email=user_email, password=user_password)
             if user:
                 login(request, user)
-                return HttpResponse('<h2>Successful login!</h2>')
+                return redirect('main_page')
 
             elif User.objects.filter(email=user_email):
                 return render(request, 'account/signup_and_signin.html',
