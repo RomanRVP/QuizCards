@@ -4,5 +4,5 @@ from .views import DeckAPIView
 
 
 urlpatterns = [
-    path('', DeckAPIView.as_view()),
+    path('deck/', DeckAPIView.as_view()),
 ]
