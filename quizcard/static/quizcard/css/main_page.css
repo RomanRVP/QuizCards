@@ -11,6 +11,7 @@
 
 .main-window {
     width: 1000px;
+    min-width: 1000px;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -37,9 +38,33 @@
     border-radius: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    min-width: 100%;
 }
 
-.deck-list {}
+.deck-list {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 100%;
+}
+
+.current-deck {
+    width: 225px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: #45a29e solid 1px;
+    border-radius: 5px;
+    color: #66fcf1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.current-deck-description {
+    display: none;
+}
+.current-deck:hover span{
+    display: block;
+}
 
 .create-deck {
     display: none;
