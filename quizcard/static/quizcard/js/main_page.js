@@ -21,6 +21,23 @@ new_deck_btn.onclick = () => {
     document.getElementById('deck-list').style.display = 'none';
 }
 
+const create_deck_confirm = document.getElementById('create-deck-confirm')
+create_deck_confirm.onclick = () => {
+    let data = {
+        "name": document.getElementById('new_deck_name').value,
+        "description": document.getElementById('new_deck_description').value
+    }
+    fetch('/api/deck/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(result => console.log(result))
+}
+
 
 function getDeckList() {
     return fetch('/api/deck/', {

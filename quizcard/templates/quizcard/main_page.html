@@ -29,8 +29,8 @@
             <div class="create-deck" id="create-deck">
                 <form class="create-deck-form">
                     {% csrf_token %}
-                    <input type="text" placeholder="deck name" name="deck_name" required>
-                    <input type="text" placeholder="deck description" name="deck_description">
+                    <input type="text" id="new_deck_name" placeholder="deck name" name="deck_name" required>
+                    <input type="text" id="new_deck_description" placeholder="deck description" name="deck_description">
                     <button type="submit" id="create-deck-confirm">Confirm</button>
                 </form>
             </div>
