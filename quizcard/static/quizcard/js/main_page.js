@@ -45,8 +45,7 @@ function getDeckList() {
     }).then(response => response.json())
         .then(data => {
             const deckBox = document.getElementById('deck-list')
-            console.log(data)
-            for (const deck of data['deck_list']) {
+            for (const deck of data) {
                 let deckElem = document.createElement('div')
                 deckElem.className = 'current-deck'
                 deckElem.innerHTML = deck['name']
