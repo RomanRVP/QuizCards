@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import DeckAPIView
+from .views import DeckListAPIView
 
 
 urlpatterns = [
-    path('deck/', DeckAPIView.as_view()),
+    path('deck/', DeckListAPIView.as_view()),
 ]
