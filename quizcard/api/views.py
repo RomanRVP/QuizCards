@@ -15,3 +15,14 @@ class DeckListAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, obj):
         obj.save(owner=self.request.user)
+
+
+class CurrentDeckAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Api for working with current Deck.
+    """
+    serializer_class = DeckSerializer
+    lookup_url_kwarg = 'pk'
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
