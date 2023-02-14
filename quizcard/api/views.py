@@ -1,21 +1,17 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
 
 from .serializers import DeckSerializer
 from quizcard.models import Deck
 
-class DeckAPIView(APIView):
-    """
-    Api view for working with the Deck model.
-    """
-    def get(self, request):
-        deck_list = Deck.objects.filter(owner=request.user)
-        return Response(
-            {'deck_list': DeckSerializer(deck_list, many=True).data}
-        )
 
-    def post(self, request):
-        serializer = DeckSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(owner=request.user)
-        return Response({'deck': serializer.data})
+class DeckAPIView(generics.ListCreateAPIView):
+    """
+    Api for get Deck list and create Deck.
+    """
+    serializer_class = DeckSerializer
+
+    def get_queryset(self):
+        return Deck.objects.filter(owner=self.request.user)
+
+    def perform_create(self, obj):
+        obj.save(owner=self.request.user)
