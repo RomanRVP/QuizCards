@@ -4,7 +4,7 @@ from .serializers import DeckSerializer
 from quizcard.models import Deck
 
 
-class DeckAPIView(generics.ListCreateAPIView):
+class DeckListAPIView(generics.ListCreateAPIView):
     """
     Api for get Deck list and create Deck.
     """
