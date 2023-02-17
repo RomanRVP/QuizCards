@@ -1,2 +1,28 @@
 * { padding: 0; margin: 0; font-family: "Bahnschrift"; }
 
+.deck-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.deck-in-deck-list {
+    background-color: #1f2833;
+    width: 225px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+    border: #45a29e solid 1px;
+    border-radius: 5px;
+    color: #66fcf1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.deck-in-deck-list:hover .deck-description-in-deck-list {
+    display: block;
+}
+
+.deck-description-in-deck-list {
+    display: none;
+}
