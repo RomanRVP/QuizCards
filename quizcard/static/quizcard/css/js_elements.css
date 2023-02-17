@@ -24,5 +24,6 @@
 }
 
 .deck-description-in-deck-list {
+    overflow: hidden;
     display: none;
 }
