@@ -85,10 +85,24 @@ function getCurrentDeck(deck_id) {
         method: 'GET',
     }).then(response => response.json())
         .then(data => {
-            let currentDeck = document.createElement('div')
-            currentDeck.className = 'current-deck'
-            currentDeck.innerHTML = data['name'] + '\n' + data['description']
-            deckBox.append(currentDeck)
+            let currentDeckBox = document.createElement('div')
+            currentDeckBox.className = 'current-deck-box'
+            let currentDeckInfo = document.createElement('div')
+            currentDeckInfo.className = 'current-deck-info-box'
+            let currentDeckName = document.createElement('span')
+            currentDeckName.className = 'current-deck-name'
+            currentDeckName.innerHTML = data['name']
+            let currentDeckDescription = document.createElement('span')
+            currentDeckDescription.className = 'current-deck-description'
+            currentDeckDescription.innerHTML = data['description']
+            let currentDeckOptions = document.createElement('div')
+            currentDeckOptions.className = 'current-deck-options-box'
+
+            currentDeckInfo.append(currentDeckName)
+            currentDeckInfo.append(currentDeckDescription)
+            currentDeckBox.append(currentDeckInfo)
+            currentDeckBox.append(currentDeckOptions)
+            deckBox.append(currentDeckBox)
         })
 }
 

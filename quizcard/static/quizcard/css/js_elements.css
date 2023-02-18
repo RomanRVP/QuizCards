@@ -27,3 +27,26 @@
     overflow: hidden;
     display: none;
 }
+
+.current-deck-box {
+    display: flex;
+}
+.current-deck-info-box {
+    width: 80%;
+    border: yellow solid 1px;
+    color: white;
+}
+.current-deck-name {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+.current-deck-description {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+.current-deck-options-box {
+    width: 20%;
+    border: salmon solid 1px;
+}
