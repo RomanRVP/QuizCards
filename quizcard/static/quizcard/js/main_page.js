@@ -95,15 +95,36 @@ function getCurrentDeck(deck_id) {
             let currentDeckDescription = document.createElement('span')
             currentDeckDescription.className = 'current-deck-description'
             currentDeckDescription.innerHTML = data['description']
+
             let currentDeckOptions = document.createElement('div')
             currentDeckOptions.className = 'current-deck-options-box'
+            let currentDeckDelete = document.createElement('button')
+            currentDeckDelete.className = 'current-deck-options-delete'
+            currentDeckDelete.id = 'current-deck-options-delete'
+            currentDeckDelete.innerHTML = 'Delete this Deck'
+            currentDeckDelete.onclick = () => deleteCurrentDeck(deck_id)
 
             currentDeckInfo.append(currentDeckName)
             currentDeckInfo.append(currentDeckDescription)
             currentDeckBox.append(currentDeckInfo)
+
+            currentDeckOptions.append(currentDeckDelete)
             currentDeckBox.append(currentDeckOptions)
+
             deckBox.append(currentDeckBox)
         })
+}
+
+function deleteCurrentDeck(deck_id) {
+    const deleteCurrentDeckBlock = document.getElementById('current-deck-options-delete')
+    deleteCurrentDeckBlock.replaceChildren()
+    return fetch('/api/deck/' + deck_id + '/', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+    }).then(getDeckList)
 }
 
 getDeckList()
