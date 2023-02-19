@@ -98,6 +98,11 @@ function getCurrentDeck(deck_id) {
 
             let currentDeckOptions = document.createElement('div')
             currentDeckOptions.className = 'current-deck-options-box'
+            let editQuizCardsInDeck = document.createElement('div')
+            editQuizCardsInDeck.className = 'edit-quiz-cards-in-deck'
+            editQuizCardsInDeck.id = 'edit-quiz-cards-in-deck'
+            editQuizCardsInDeck.innerHTML = 'Edit Quiz Cards'
+            editQuizCardsInDeck.onclick = () => editQuizCardsInDeck(deck_id)
             let currentDeckDelete = document.createElement('button')
             currentDeckDelete.className = 'current-deck-options-delete'
             currentDeckDelete.id = 'current-deck-options-delete'
@@ -108,6 +113,7 @@ function getCurrentDeck(deck_id) {
             currentDeckInfo.append(currentDeckDescription)
             currentDeckBox.append(currentDeckInfo)
 
+            currentDeckOptions.append(editQuizCardsInDeck)
             currentDeckOptions.append(currentDeckDelete)
             currentDeckBox.append(currentDeckOptions)
 
@@ -118,6 +124,7 @@ function getCurrentDeck(deck_id) {
 function deleteCurrentDeck(deck_id) {
     const deleteCurrentDeckBlock = document.getElementById('current-deck-options-delete')
     deleteCurrentDeckBlock.replaceChildren()
+    // code for asking 'are u sure?'/'confirm'
     return fetch('/api/deck/' + deck_id + '/', {
         method: 'DELETE',
         headers: {
@@ -125,6 +132,12 @@ function deleteCurrentDeck(deck_id) {
             'X-CSRFToken': csrftoken,
         },
     }).then(getDeckList)
+}
+
+function editQuizCardsInDeck(deck_id) {
+    const mainBox = document.getElementById('filling-js-block')
+    mainBox.replaceChildren()
+    // code for edit quiz cards (get and post)
 }
 
 getDeckList()
