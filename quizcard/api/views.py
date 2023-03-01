@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from .serializers import DeckSerializer
-from quizcard.models import Deck
+from .serializers import DeckSerializer, QuizCardSerializer
+from quizcard.models import Deck, QuizCard
 
 
 class DeckListAPIView(generics.ListCreateAPIView):
@@ -26,3 +26,10 @@ class CurrentDeckAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Deck.objects.filter(owner=self.request.user)
+
+
+class QuizCardAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Api for working with the quiz-card (create, read, update, delete)
+    """
+    serializer_class = QuizCardSerializer
