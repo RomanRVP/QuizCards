@@ -27,3 +27,9 @@ class CurrentDeckAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Deck.objects.filter(owner=self.request.user)
 
+
+class CreateQuizCardAPIView(generics.CreateAPIView):
+    """
+    Api to create a new quiz-card.
+    """
+    serializer_class = QuizCardSerializer
