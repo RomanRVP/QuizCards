@@ -2,7 +2,7 @@ from rest_framework import generics
 
 from .serializers import DeckSerializer, QuizCardSerializer
 from quizcard.models import Deck, QuizCard
-
+from .permissions import AccessForTheOwnerOfTheDeck
 
 class DeckListAPIView(generics.ListCreateAPIView):
     """
@@ -33,3 +33,5 @@ class CreateQuizCardAPIView(generics.CreateAPIView):
     Api to create a new quiz-card.
     """
     serializer_class = QuizCardSerializer
+    permission_classes = (AccessForTheOwnerOfTheDeck,)
+
